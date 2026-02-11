@@ -6,18 +6,31 @@
 }
 
 body {
-    background-color: #222;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .card {
     width: 90%;
     max-width: 470px;
-    background: linear-gradient(135deg, #00feba, #5b548a);
-    color: #fff;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    color: #1a1a2e;
     margin: 60px auto 20px;
-    border-radius: 20px;
-    padding: 30px 25px;
+    border-radius: 24px;
+    padding: 40px 30px;
     text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 .search {
@@ -28,30 +41,57 @@ body {
 }
 
 .search input {
-    border: 0;
+    border: 2px solid #e5e7eb;
     outline: 0;
-    background: #ebfffc;
-    color: #555;
-    padding: 10px 20px;
-    height: 50px;
-    border-radius: 30px;
+    background: #f9fafb;
+    color: #374151;
+    padding: 12px 20px;
+    height: 52px;
+    border-radius: 16px;
     flex: 1;
     margin-right: 12px;
     font-size: 16px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.search input:focus {
+    border-color: #667eea;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.search input::placeholder {
+    color: #9ca3af;
 }
 
 .search button {
     border: 0;
     outline: 0;
-    background: #ebfffc;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 16px;
+    width: 52px;
+    height: 52px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.search button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.search button:active {
+    transform: scale(0.98);
 }
 
 .search button img {
-    width: 14px;
+    width: 18px;
+    filter: brightness(0) invert(1);
 }
 
 .weather-icon {
@@ -60,14 +100,20 @@ body {
 }
 
 .weather h1 {
-    font-size: 60px;
-    font-weight: 500;
+    font-size: 72px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 20px 0;
 }
 
 .weather h2 {
-    font-size: 35px;
-    font-weight: 400;
-    margin-top: -8px;
+    font-size: 32px;
+    font-weight: 600;
+    margin-top: -10px;
+    color: #374151;
 }
 
 .details {
@@ -83,17 +129,42 @@ body {
     display: flex;
     align-items: center;
     text-align: left;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    padding: 18px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 140px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.08);
+}
+
+.col:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+    border-color: rgba(102, 126, 234, 0.3);
 }
 
 .col img {
-    width: 35px;
-    margin-right: 10px;
+    width: 40px;
+    margin-right: 12px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .humidity, .wind {
-    font-size: 22px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a2e;
     margin-top: -4px;
+}
+
+.col p:last-child {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 4px;
+    font-weight: 500;
 }
 
 .weather {
@@ -101,11 +172,16 @@ body {
 }
 
 .error {
-    text-align: left;
-    margin-left: 10px;
+    text-align: center;
     font-size: 14px;
-    margin-top: 10px;
+    margin-top: 15px;
     display: none;
+    color: #ef4444;
+    font-weight: 500;
+    padding: 12px;
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 @media (max-width: 768px) {
